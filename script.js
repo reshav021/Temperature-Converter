@@ -1,68 +1,31 @@
-const months = [31,28,31,30,31,30,31,31,30,31,30,31];
+function calculate(){
+    let s1 = document.getElementsByName('scale1')[0];
+    let t1 = s1.options[s1.selectedIndex].text;
 
-function ageCalculate(){
-    let today = new Date();
-    let inputDate = new Date(document.getElementById("date-input").value);
-    let birthMonth,birthDate,birthYear;
+    let s2 = document.getElementsByName('scale2')[0];
+    let t2 = s2.options[s2.selectedIndex].text;
 
-    let birthDetails = {
-        date:inputDate.getDate(),
-        month:inputDate.getMonth()+1,
-        year:inputDate.getFullYear()
+    let num = parseInt(document.getElementById('num').value);
+    let result=0;
+
+    if(t1==='Celsius' && t2==='Fahrenheit'){
+        result = (((9/5)*num) + 32) + " F";
+    }
+    else if(t1==='Celsius' && t2==='Kelvin'){
+        result = (num + 273.15) + " K";
+    }
+    else if(t1==='Fahrenheit' && t2==='Celsius'){
+        result = (((5/9)*num) + 32) + " C";
+    }
+    else if(t1==='Fahrenheit' && t2==='Kelvin'){
+        result = (((num-32)*(5/9)) + 273.15) + " K";
+    }
+    else if(t1==='Kelvin' && t2==='Celsius'){
+        result = (num - 273.15) + " C";
+    }
+    else if(t1==='Kelvin' && t2==='Fahrenheit'){
+        result = (((num-273.15)*(9/5)) + 32) + " F";
     }
 
-    let currentYear = today.getFullYear();
-    let currentMonth = today.getMonth()+1;
-    let currentDate = today.getDate();
-
-    checkLeapYear(currentYear);
-
-    //Checking whether date selected is not after present date
-    if(birthDetails.year > currentYear || 
-        (birthDetails.month > currentMonth && birthDetails.year == currentYear) || 
-        (birthDetails.date > currentDate && birthDetails.month == currentMonth && birthDetails.year == currentYear)
-    ){
-        alert("Not Born Yet");
-        displayResult("-","-","-");
-        return;
-    }
-
-    birthYear = currentYear - birthDetails.year;
-
-    if(currentMonth >= birthDetails.month){
-        birthMonth = currentMonth - birthDetails.month;
-    }
-    else{
-        birthYear--;
-        birthMonth = 12 + currentMonth - birthDetails.month;
-    }
-
-    if(currentDate >= birthDetails.date){
-        birthDate = currentDate - birthDetails.date;
-    }
-    else{
-        birthMonth--;
-        let days = months[currentMonth - 2];
-        birthDate = days + currentDate - birthDetails.date;
-        if(birthMonth < 0){
-            birthMonth = 11;
-            birthYear--;
-        }
-    }
-    displayResult(birthDate,birthMonth,birthYear);
-}
-
-function displayResult(bDate,bMonth,bYear){
-    document.getElementById("years").textContent = bYear;
-    document.getElementById("months").textContent = bMonth;
-    document.getElementById("days").textContent = bDate;
-}
-
-function checkLeapYear(year){
-    if(year % 4 == 0 || (year % 100 == 0 && year % 400 == 0)){
-        months[1] = 29;
-    }
-    else{
-        months[1] = 28;
-    }
+    document.getElementById("res").innerHTML = result;
 }
