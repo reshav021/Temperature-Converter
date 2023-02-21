@@ -1,46 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Age Calculator</title>
-    <!--Google Font-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    <!--Stylesheet-->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="inputs-wrapper">
-            <input type="date" id="date-input">
-            <button onclick="ageCalculate()">Calculate</button>
+    <head>
+        <title>Temperature Converter</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="container">
+            <p>From</p>
+            <select id="scale1" name="scale1">
+              <option id="sc" value="Celsius">Celsius</option>
+              <option id="sc" value="Fahrenheit">Fahrenheit</option>
+              <option id="sc" value="Kelvin">Kelvin</option>
+            </select>
+            <p>To</p>
+            <select id="scale2" name="scale2">
+                <option value="Celsius">Celsius</option>
+                <option value="Fahrenheit">Fahrenheit</option>
+                <option value="Kelvin">Kelvin</option>
+            </select>
+
+            <p>Enter the temperature:</p>
+            <input id="num" type="number"><br>
+            <br>
+            <button id="btn-calc" onclick="calculate()">Calculate</button>
+            <br><br>
+            <span>Temperature is:</span>
+            <span id="res"></span>
         </div>
-        <div class="outputs-wrapper">
-            <div>
-                <span id="years">
-                    -
-                </span>
-                <p>
-                    Years
-                </p>
-            </div>
-            <div>
-                <span id="months">
-                    -
-                </span>
-                <p>
-                   Months
-                </p>
-            </div>
-            <div>
-                <span id="days">
-                    -
-                </span>
-                <p>
-                    Days
-                </p>
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+
+        <script src="script.js"></script>
+    </body>
 </html>
